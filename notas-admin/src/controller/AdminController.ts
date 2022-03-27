@@ -1,12 +1,11 @@
-import { getRepository } from 'typeorm';
 import { Request, Response } from 'express';
+import AdminService from '../service/AdminService';
 import Admin from '../entity/Admin';
 
 class AdminController {
   public async index(_: Request, response: Response): Promise<Response> {
     try {
-      const repo = getRepository(Admin);
-      const data: Admin[] = await repo.find();
+      const data: Admin[] | undefined = await AdminService.index();
 
       return response.status(200).json(data);
     } catch (error) {
@@ -17,10 +16,9 @@ class AdminController {
 
   public async show(request: Request, response: Response): Promise<Response> {
     try {
-      const repo = getRepository(Admin);
-      const data: Admin | undefined = await repo.findOne({
-        where: { id: request.params.id }
-      });
+      const data: Admin | undefined = await AdminService.show(
+        request.params.id
+      );
 
       return response.status(200).json(data);
     } catch (error) {
@@ -31,8 +29,7 @@ class AdminController {
 
   public async store(request: Request, response: Response): Promise<Response> {
     try {
-      const repo = getRepository(Admin);
-      await repo.save(request.body);
+      await AdminService.store(request.body);
 
       return response.status(201).json({ Message: 'New Admin Created' });
     } catch (error) {
@@ -43,8 +40,7 @@ class AdminController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     try {
-      const repo = getRepository(Admin);
-      await repo.update(request.params.id, request.body);
+      await AdminService.update(request.params.id, request.body);
 
       return response.status(200).json({ Message: 'Admin Updated' });
     } catch (error) {
@@ -58,18 +54,15 @@ class AdminController {
     response: Response
   ): Promise<Response> {
     try {
-      const repo = getRepository(Admin);
-      const userToRemove = await repo.findOne({
-        where: {
-          id: request.params.id
-        }
-      });
+      const userToRemove: Admin | undefined = await AdminService.show(
+        request.params.id
+      );
 
       if (!userToRemove) {
         return response.status(404).json({ Message: 'Admin not found' });
       }
 
-      const data: Admin = await repo.remove(userToRemove);
+      const data: Admin = await AdminService.destroy(userToRemove);
 
       return response
         .status(200)

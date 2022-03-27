@@ -1,6 +1,6 @@
 require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })
 
-module.exports = {
+module.exports = [{
   type: 'postgres',
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
@@ -15,4 +15,4 @@ module.exports = {
     entitiesDir: process.env.TYPEORM_ENTITIES_DIR,
     migrationsDir: process.env.TYPEORM_MIGRATION_DIR,
   }
-};
+}];

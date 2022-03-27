@@ -4,7 +4,7 @@ GET http://localhost:3000/health
 GET http://localhost:3000/admin
 
 ###
-GET http://localhost:3000/admin/b92329c6-a012-4b55-925f-54d4cea047d9
+GET http://localhost:3000/admin/efb1aef4-109e-4905-b03a-c53b369ba34a
 
 
 ###
@@ -18,12 +18,12 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3000/admin/b92329c6-a012-4b55-925f-54d4cea047d9
+PUT http://localhost:3000/admin/efb1aef4-109e-4905-b03a-c53b369ba34a
 Content-Type: application/json
 
 {
-  "lastName": "Oliveira"
+  "lastName": "Castro"
 }
 
 ###
-DELETE http://localhost:3000/admin/b92329c6-a012-4b55-925f-54d4cea047d9
+DELETE http://localhost:3000/admin/efb1aef4-109e-4905-b03a-c53b369ba34a
