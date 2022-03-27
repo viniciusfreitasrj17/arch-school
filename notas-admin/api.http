@@ -1,0 +1,29 @@
+GET http://localhost:3000/health
+
+###
+GET http://localhost:3000/admin
+
+###
+GET http://localhost:3000/admin/b92329c6-a012-4b55-925f-54d4cea047d9
+
+
+###
+POST http://localhost:3000/admin
+Content-Type: application/json
+
+{
+  "firstName": "Marcela",
+  "lastName": "Rezende",
+  "email": "marcela@gmail.com"
+}
+
+###
+PUT http://localhost:3000/admin/b92329c6-a012-4b55-925f-54d4cea047d9
+Content-Type: application/json
+
+{
+  "lastName": "Oliveira"
+}
+
+###
+DELETE http://localhost:3000/admin/b92329c6-a012-4b55-925f-54d4cea047d9
