@@ -27,3 +27,35 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3000/admin/efb1aef4-109e-4905-b03a-c53b369ba34a
+
+###
+GET http://localhost:3000/student
+
+###
+GET http://localhost:3000/student/efb1aef4-109e-4905-b03a-c53b369ba34a
+
+
+###
+POST http://localhost:3000/student
+Content-Type: application/json
+
+{
+  "firstName": "Carlos",
+  "lastName": "Oliveira",
+  "n1": 10,
+  "n2": 9,
+  "n3": 2,
+  "n4": 6
+}
+
+###
+PUT http://localhost:3000/student/efb1aef4-109e-4905-b03a-c53b369ba34a
+Content-Type: application/json
+
+{
+  "lastName": "Assis",
+  "n3": 1,
+}
+
+###
+DELETE http://localhost:3000/student/efb1aef4-109e-4905-b03a-c53b369ba34a

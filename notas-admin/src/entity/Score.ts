@@ -1,9 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import Student from './Student';
 
 @Entity('score')
 export default class Score {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
+
+  @ManyToOne(type => Student, (student) => student.id, {
+    onDelete: 'CASCADE'
+  })
+  @JoinColumn({ name: 'idStudent', referencedColumnName: 'id' })
+  idStudent!: Student;
 
   @Column()
   n1!: number;

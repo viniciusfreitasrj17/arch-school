@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import Score from './Score';
 
 @Entity('student')
 export default class Student {
@@ -10,4 +11,10 @@ export default class Student {
 
   @Column()
   lastName!: string;
+
+  @OneToMany(type => Score, (score) => score.idStudent, {
+    cascade: true,
+    eager: true,
+  })
+  scores!: Score[];
 }
