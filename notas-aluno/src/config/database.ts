@@ -1,4 +1,4 @@
-import { Pool, QueryConfig, QueryResult, QueryResultRow } from 'pg';
+import { Pool } from 'pg';
 import { databaseName, hostDB, passwordDB, portDB, usernameDB } from '.'
 
 export const pool: Pool = new Pool({

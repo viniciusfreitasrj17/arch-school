@@ -5,13 +5,17 @@ GET http://localhost:3000/health
 
 //============================ Admin Routes =======================//
 
+// Return: Admin[]
 ###
 GET http://localhost:3000/admin
 
+
+// Return: Admin
 ###
 GET http://localhost:3000/admin/5dfc2b16-5cf8-4391-9632-8987eef9399a
 
 
+// Return: string
 ###
 POST http://localhost:3000/admin
 Content-Type: application/json
@@ -23,6 +27,8 @@ Content-Type: application/json
   "password": "12345abc"
 }
 
+
+// Return: string
 ###
 PUT http://localhost:3000/admin/5dfc2b16-5cf8-4391-9632-8987eef9399a
 Content-Type: application/json
@@ -31,9 +37,13 @@ Content-Type: application/json
   "lastName": "Castro"
 }
 
+
+// Return: string
 ###
 DELETE http://localhost:3000/admin/5dfc2b16-5cf8-4391-9632-8987eef9399a
 
+
+// Return: Object: { Admin, AccessToken }
 ###
 POST http://localhost:3000/admin/login
 Content-Type: application/json
@@ -45,10 +55,13 @@ Content-Type: application/json
 
 //============================ Student Routes =======================//
 
+// Return: Student[]
 ###
 GET http://localhost:3000/student
 Authorization: Bearer xxx
 
+
+// Return: string
 ###
 POST http://localhost:3000/student
 Content-Type: application/json
@@ -65,6 +78,8 @@ Authorization: Bearer xxx
   "n4": 7
 }
 
+
+// Return: string
 ###
 POST http://localhost:3000/student/d28d4f60-0911-430a-b6c2-19266617ff1b
 Content-Type: application/json

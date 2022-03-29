@@ -1,16 +1,17 @@
 import app from './app';
 import { portServer } from './config'
 import { pool } from './config/database';
+import { serverLogger } from './config/logger';
 
 pool.connect()
   .then(() => {
-    console.log('Connected to DB');
+    serverLogger.info('Connected to DB');
 
     app.listen(portServer, () => {
-      console.log(`🏃 Running Server on port ${portServer} ✨`);
+      serverLogger.info(`🏃 Running Server on port ${portServer} ✨`);
     });
   })
   .catch(error => {
-    console.log('DB connection error: ', error)
+    serverLogger.error('DB connection error: ', error)
   })
 

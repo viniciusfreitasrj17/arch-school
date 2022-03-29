@@ -2,6 +2,7 @@ import { hash } from 'bcryptjs';
 import { validate } from 'class-validator';
 import { getRepository } from 'typeorm';
 import { BCRYPT_HASH_ROUND } from '../config';
+import { scoreLogger, studentLogger } from '../config/logger';
 import Score from '../entity/Score';
 import Student from '../entity/Student';
 
@@ -54,6 +55,7 @@ class StudentService {
       })
 
       if (!studant) {
+        studentLogger.error('Not found Student')
         throw new Error('Not found Student')
       }
 
@@ -84,7 +86,8 @@ class StudentService {
       })
 
       if (!score) {
-        throw new Error('Not found Student')
+        scoreLogger.error('Not found Score')
+        throw new Error('Not found Score')
       }
 
       const newScore = {
@@ -99,6 +102,7 @@ class StudentService {
       const { firstName, lastName, email, password } = body;
 
       if (await getRepository(Student).findOne({ where: { email } })) {
+        studentLogger.error('E-mail is already being used')
         throw new Error('E-mail is already being used')
       }
 
@@ -112,7 +116,7 @@ class StudentService {
       const erros = await validate(student);
 
       if (erros.length !== 0) {
-        console.log(erros.map(content => content.constraints))
+        studentLogger.error('Error Validation: ', erros.map(content => content.constraints))
         throw new Error('Error Validation')
       }
 

@@ -14,6 +14,8 @@ services:
       - development
     ports:
       - ${PORT_ADMIN}:${PORT_ADMIN}
+    volumes:
+      - ./notas-admin:/api
     environment:
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
@@ -31,6 +33,8 @@ services:
       - development
     ports:
       - ${PORT_ALUNO}:${PORT_ALUNO}
+    volumes:
+      - ./notas-aluno:/api
     environment:
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}

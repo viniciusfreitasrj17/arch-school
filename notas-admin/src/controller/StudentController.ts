@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import StudentService from '../service/StudentService';
-import Student from '../entity/Student';
+import { studentLogger } from '../config/logger';
 
 class StudentController {
   public async indexStudent(req: Request, response: Response): Promise<Response> {
@@ -9,7 +9,7 @@ class StudentController {
 
       return response.status(200).json(data);
     } catch (error) {
-      console.log(error);
+      studentLogger.error(error);
       return response.status(400).json({ Message: 'Index Student Failed' });
     }
   }
@@ -20,7 +20,7 @@ class StudentController {
 
       return response.status(201).json({ Message: 'New Student Created or Updated' });
     } catch (error) {
-      console.log(error);
+      studentLogger.error(error);
       return response.status(400).json({ Message: 'Store Student Failed' });
     }
   }

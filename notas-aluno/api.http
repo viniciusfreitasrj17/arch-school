@@ -5,6 +5,7 @@ GET http://localhost:3001/health
 
 //============================ Student Routes =======================//
 
+// Return: Object: { Admin, AccessToken }
 ###
 POST http://localhost:3001/student/login
 Content-Type: application/json
@@ -16,6 +17,7 @@ Content-Type: application/json
 
 //============================ Score Routes =======================//
 
+// Return: Score[]
 ###
 GET http://localhost:3001/score
 Authorization: Bearer xxx

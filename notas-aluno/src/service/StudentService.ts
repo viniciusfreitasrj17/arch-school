@@ -1,5 +1,6 @@
 import { compare } from 'bcryptjs';
 import { pool } from '../config/database';
+import { studentLogger } from '../config/logger';
 import Student from '../entity/Student';
 import { generateToken } from '../utils/generateToken';
 
@@ -12,6 +13,7 @@ class StudentService {
     )).rows[0]
 
     if (!student) {
+      studentLogger.error('Not Found Student')
       throw new Error('Not Found Student')
     }
 
@@ -20,6 +22,7 @@ class StudentService {
     }
 
     if (!(await compare(password, student.password))) {
+      studentLogger.error('Invalid Password')
       throw new Error('Invalid Password');
     }
 

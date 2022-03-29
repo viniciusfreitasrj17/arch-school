@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { studentLogger } from "../config/logger";
 import StudentService from "../service/StudentService";
 
 class StudentController {
@@ -8,7 +9,7 @@ class StudentController {
 
       return response.status(200).json(data);
     } catch (error) {
-      console.log(error);
+      studentLogger.error(error);
       return response.status(400).json({ Message: 'Auth Student Failed' });
     }
   }

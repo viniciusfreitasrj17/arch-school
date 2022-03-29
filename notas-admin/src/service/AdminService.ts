@@ -4,6 +4,7 @@ import { compare, hash } from 'bcryptjs'
 import Admin from '../entity/Admin';
 import { BCRYPT_HASH_ROUND } from '../config'
 import { generateToken } from '../utils/generateToken';
+import { adminLogger } from '../config/logger';
 
 class AdminService {
   public async index(): Promise<Admin[] | undefined> {
@@ -18,6 +19,7 @@ class AdminService {
     const { firstName, lastName, email, password } = body;
 
     if (await getRepository(Admin).findOne({ where: { email } })) {
+      adminLogger.error('E-mail is already being used')
       throw new Error('E-mail is already being used')
     }
 
@@ -31,7 +33,7 @@ class AdminService {
     const erros = await validate(admin);
 
     if (erros.length !== 0) {
-      console.log(erros.map(content => content.constraints))
+      adminLogger.error('Error Validation: ', erros.map(content => content.constraints))
       throw new Error('Error Validation')
     }
 
@@ -48,12 +50,14 @@ class AdminService {
     const { firstName, lastName, email, password } = body;
 
     if (await getRepository(Admin).findOne({ where: { email } })) {
+      adminLogger.error('E-mail is already being used')
       throw new Error('E-mail is already being used')
     }
 
     const admin = await getRepository(Admin).findOne({ where: { id } });
 
     if (!admin) {
+      adminLogger.error('Not Found Admin')
       throw new Error('Not Found Admin')
     }
 
@@ -86,6 +90,7 @@ class AdminService {
     });
 
     if (!admin) {
+      adminLogger.error('Admin not found')
       throw new Error('Admin not found')
     }
 
@@ -107,7 +112,8 @@ class AdminService {
     });
 
     if (!admin) {
-      throw new Error('Not Found Admin')
+      adminLogger.error('Admin not found')
+      throw new Error('Admin not found')
     }
 
     if (password !== String) {
@@ -115,6 +121,7 @@ class AdminService {
     }
 
     if (!(await compare(password, admin.password))) {
+      adminLogger.error('Invalid Password')
       throw new Error('Invalid Password');
     }
 

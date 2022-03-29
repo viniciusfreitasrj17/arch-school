@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { scoreLogger } from "../config/logger";
 import Score from "../entity/Score"
 import ScoreService from "../service/ScoreService";
 
@@ -16,7 +17,7 @@ class ScoreController {
 
       return response.status(200).json(data);
     } catch (error) {
-      console.log(error);
+      scoreLogger.error(error);
       return response.status(400).json({ Message: 'Index Score Failed' });
     }
   }

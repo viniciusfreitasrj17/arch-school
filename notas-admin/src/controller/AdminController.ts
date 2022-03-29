@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import AdminService from '../service/AdminService';
 import Admin from '../entity/Admin';
+import { adminLogger } from '../config/logger';
 
 class AdminController {
   public async index(_: Request, response: Response): Promise<Response> {
@@ -9,7 +10,7 @@ class AdminController {
 
       return response.status(200).json(data);
     } catch (error) {
-      console.log(error);
+      adminLogger.error(error);
       return response.status(400).json({ Message: 'Index Admin Failed' });
     }
   }
@@ -22,7 +23,7 @@ class AdminController {
 
       return response.status(200).json(data);
     } catch (error) {
-      console.log(error);
+      adminLogger.error(error);
       return response.status(400).json({ Message: 'Show Admin Failed' });
     }
   }
@@ -33,7 +34,7 @@ class AdminController {
 
       return response.status(201).json({ Message: 'New Admin Created' });
     } catch (error) {
-      console.log(error);
+      adminLogger.error(error);
       return response.status(400).json({ Message: 'Store Admin Failed' });
     }
   }
@@ -44,7 +45,7 @@ class AdminController {
 
       return response.status(200).json({ Message: 'Admin Updated' });
     } catch (error) {
-      console.log(error);
+      adminLogger.error(error);
       return response.status(400).json({ Message: 'Update Admin Failed' });
     }
   }
@@ -60,7 +61,7 @@ class AdminController {
         .status(200)
         .json({ Message: `Admin ${data.firstName} deleted` });
     } catch (error) {
-      console.log(error);
+      adminLogger.error(error);
       return response.status(400).json({ Message: 'Destroy Admin Failed' });
     }
   }
@@ -71,7 +72,7 @@ class AdminController {
 
       return response.status(200).json(data);
     } catch (error) {
-      console.log(error);
+      adminLogger.error(error);
       return response.status(400).json({ Message: 'Auth Admin Failed' });
     }
   }
