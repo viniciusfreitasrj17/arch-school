@@ -1,11 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import Global from "./Global"
 
 @Entity()
-export class User {
-
-    @PrimaryGeneratedColumn()
-    id: number
-
+export class User extends Global {
     @Column()
     firstName: string
 
@@ -14,5 +11,4 @@ export class User {
 
     @Column()
     age: number
-
 }

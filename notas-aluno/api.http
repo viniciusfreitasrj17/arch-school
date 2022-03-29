@@ -1,0 +1,20 @@
+//============================ Health Routes =======================//
+
+###
+GET http://localhost:3000/health
+
+//============================ Student Routes =======================//
+
+###
+POST http://localhost:3000/student/login
+Content-Type: application/json
+
+{
+  "email": "marcela@gmail.com",
+  "password": "12345abc"
+}
+
+//============================ Score Routes =======================//
+
+###
+GET http://localhost:3000/score
