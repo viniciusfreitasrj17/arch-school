@@ -1,11 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import Global from './Global';
 import Student from './Student';
 
 @Entity('score')
-export default class Score {
-  @PrimaryGeneratedColumn('uuid')
-  id!: string;
-
+export default class Score  extends Global {
   @ManyToOne(type => Student, (student) => student.id, {
     onDelete: 'CASCADE'
   })

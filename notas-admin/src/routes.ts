@@ -1,6 +1,7 @@
 import { Request, Response, Router } from 'express';
 import AdminController from './controller/AdminController';
 import StudentController from './controller/StudentController';
+import authMiddleware from './middlewares/auth';
 
 const routes: Router = Router();
 
@@ -21,10 +22,11 @@ routes.get('/admin/:id', AdminController.show);
 routes.put('/admin/:id', AdminController.update);
 routes.post('/admin', AdminController.store);
 routes.delete('/admin/:id', AdminController.destroy);
+routes.post('/admin/login', AdminController.auth);
 
 // routes Student
-routes.get('/student', StudentController.indexStudent);
-routes.post('/student', StudentController.storeStudent);
-routes.post('/student/:id', StudentController.storeStudent);
+routes.get('/student', authMiddleware, StudentController.indexStudent);
+routes.post('/student', authMiddleware, StudentController.storeStudent);
+routes.post('/student/:id', authMiddleware, StudentController.storeStudent);
 
 export default routes;

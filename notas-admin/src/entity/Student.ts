@@ -1,11 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import Global from './Global';
 import Score from './Score';
 
 @Entity('student')
-export default class Student {
-  @PrimaryGeneratedColumn('uuid')
-  id!: string;
-
+export default class Student extends Global {
   @Column()
   firstName!: string;
 

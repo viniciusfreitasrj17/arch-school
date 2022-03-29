@@ -1,10 +1,15 @@
+//============================ Health Routes =======================//
+
+###
 GET http://localhost:3000/health
+
+//============================ Admin Routes =======================//
 
 ###
 GET http://localhost:3000/admin
 
 ###
-GET http://localhost:3000/admin/efb1aef4-109e-4905-b03a-c53b369ba34a
+GET http://localhost:3000/admin/5dfc2b16-5cf8-4391-9632-8987eef9399a
 
 
 ###
@@ -14,11 +19,12 @@ Content-Type: application/json
 {
   "firstName": "Marcela",
   "lastName": "Rezende",
-  "email": "marcela@gmail.com"
+  "email": "marcela@gmail.com",
+  "password": "12345abc"
 }
 
 ###
-PUT http://localhost:3000/admin/efb1aef4-109e-4905-b03a-c53b369ba34a
+PUT http://localhost:3000/admin/5dfc2b16-5cf8-4391-9632-8987eef9399a
 Content-Type: application/json
 
 {
@@ -26,14 +32,27 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/admin/efb1aef4-109e-4905-b03a-c53b369ba34a
+DELETE http://localhost:3000/admin/5dfc2b16-5cf8-4391-9632-8987eef9399a
+
+###
+POST http://localhost:3000/admin/login
+Content-Type: application/json
+
+{
+  "email": "marcela@gmail.com",
+  "password": "12345abc"
+}
+
+//============================ Student Routes =======================//
 
 ###
 GET http://localhost:3000/student
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg1Njk4MDIsImV4cCI6MTY0ODY1NjIwMn0.qU9q7QomfnCrPOHsIHAgRc8LqcKYPLVp_DKZTeXh00w
 
 ###
 POST http://localhost:3000/student
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg1Njk4MDIsImV4cCI6MTY0ODY1NjIwMn0.qU9q7QomfnCrPOHsIHAgRc8LqcKYPLVp_DKZTeXh00w
 
 {
   "firstName": "Lucio",
@@ -45,14 +64,12 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/student/0a0a34de-6858-4697-be46-2c919243caa1
+POST http://localhost:3000/student/98062c10-b635-4ad0-a51d-9079eab3156a
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg1Njk4MDIsImV4cCI6MTY0ODY1NjIwMn0.qU9q7QomfnCrPOHsIHAgRc8LqcKYPLVp_DKZTeXh00w
 
 {
   "lastName": "Andrade",
   "n3": 1,
   "n2": 1
 }
-
-###
-DELETE http://localhost:3000/student/e84b8296-2c23-4fab-9064-fe4e5351b4d3

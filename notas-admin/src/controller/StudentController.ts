@@ -3,7 +3,7 @@ import StudentService from '../service/StudentService';
 import Student from '../entity/Student';
 
 class StudentController {
-  public async indexStudent(_: Request, response: Response): Promise<Response> {
+  public async indexStudent(req: Request, response: Response): Promise<Response> {
     try {
       const data: any[] | undefined = await StudentService.indexStudent();
 
@@ -18,7 +18,7 @@ class StudentController {
     try {
       await StudentService.storeStudent(request.params.id, request.body);
 
-      return response.status(201).json({ Message: 'New Student Created' });
+      return response.status(201).json({ Message: 'New Student Created or Updated' });
     } catch (error) {
       console.log(error);
       return response.status(400).json({ Message: 'Store Student Failed' });

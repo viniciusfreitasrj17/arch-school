@@ -54,15 +54,7 @@ class AdminController {
     response: Response
   ): Promise<Response> {
     try {
-      const userToRemove: Admin | undefined = await AdminService.show(
-        request.params.id
-      );
-
-      if (!userToRemove) {
-        return response.status(404).json({ Message: 'Admin not found' });
-      }
-
-      const data: Admin = await AdminService.destroy(userToRemove);
+      const data: Admin = await AdminService.destroy(request.params.id);
 
       return response
         .status(200)
@@ -70,6 +62,17 @@ class AdminController {
     } catch (error) {
       console.log(error);
       return response.status(400).json({ Message: 'Destroy Admin Failed' });
+    }
+  }
+
+  public async auth(request: Request, response: Response): Promise<Response> {
+    try {
+      const data = await AdminService.auth(request.body);
+
+      return response.status(200).json(data);
+    } catch (error) {
+      console.log(error);
+      return response.status(400).json({ Message: 'Auth Admin Failed' });
     }
   }
 }

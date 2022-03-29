@@ -1,5 +1,4 @@
 import { getRepository } from 'typeorm';
-import { v4 } from 'uuid';
 import Score from '../entity/Score';
 import Student from '../entity/Student';
 
@@ -86,14 +85,13 @@ class StudentService {
 
       const { n1, n2, n3, n4 } = body
 
-      const score: Score = {
-        id: v4(),
+      const score: Score = getRepository(Score).create({
         idStudent: studant,
         n1,
         n2,
         n3,
         n4
-      }
+      })
 
       return getRepository(Score).save(score);
     }
