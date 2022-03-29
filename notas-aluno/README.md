@@ -1,4 +1,4 @@
-# Awesome Project Build with TypeORM
+# Project Notas Aluno
 
 Steps to run this project:
 

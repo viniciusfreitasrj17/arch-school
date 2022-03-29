@@ -1,0 +1,59 @@
+version: '3.4'
+
+networks:
+  development:
+    driver: bridge
+
+services:
+
+  api_admin_development:
+    build:
+      context: ./notas-admin
+      dockerfile: Dockerfile
+    networks:
+      - development
+    ports:
+      - ${PORT_ADMIN}:${PORT_ADMIN}
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
+    depends_on:
+      - db_development
+
+  api_aluno_development:
+    build:
+      context: ./notas-aluno
+      dockerfile: Dockerfile
+    networks:
+      - development
+    ports:
+      - ${PORT_ALUNO}:${PORT_ALUNO}
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
+    depends_on:
+      - db_development
+
+  db_development:
+    build:
+      context: .
+      dockerfile: db.Dockerfile
+    networks:
+      - development
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_NAME=${DB_NAME}
+    ports:
+      - ${DB_PORT}:${DB_PORT}

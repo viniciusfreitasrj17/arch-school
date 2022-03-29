@@ -11,6 +11,6 @@ pool.connect()
     });
   })
   .catch(error => {
-    console.log('TypeORM connection error: ', error)
+    console.log('DB connection error: ', error)
   })
 
