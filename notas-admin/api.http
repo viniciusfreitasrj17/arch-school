@@ -57,6 +57,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg1Njk4M
 {
   "firstName": "Lucio",
   "lastName": "Rodrigues",
+  "email": "lucio@gmail.com",
+  "password": "lucio12345",
   "n1": 1,
   "n2": 8,
   "n3": 9,
@@ -64,7 +66,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg1Njk4M
 }
 
 ###
-POST http://localhost:3000/student/98062c10-b635-4ad0-a51d-9079eab3156a
+POST http://localhost:3000/student/d28d4f60-0911-430a-b6c2-19266617ff1b
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg1Njk4MDIsImV4cCI6MTY0ODY1NjIwMn0.qU9q7QomfnCrPOHsIHAgRc8LqcKYPLVp_DKZTeXh00w
 

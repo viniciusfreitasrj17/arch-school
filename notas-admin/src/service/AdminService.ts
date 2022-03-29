@@ -51,17 +51,17 @@ class AdminService {
       throw new Error('E-mail is already being used')
     }
 
-    const data = await getRepository(Admin).findOne({ where: { id } });
+    const admin = await getRepository(Admin).findOne({ where: { id } });
 
-    if (!data) {
+    if (!admin) {
       throw new Error('Not Found Admin')
     }
 
     const newAdmin = getRepository(Admin).create({
-      firstName: firstName || data.firstName,
-      lastName: lastName || data.lastName,
-      email: email || data.email,
-      password: password || data.password,
+      firstName: firstName || admin.firstName,
+      lastName: lastName || admin.lastName,
+      email: email || admin.email,
+      password: password || admin.password,
     });
 
     if (password) {

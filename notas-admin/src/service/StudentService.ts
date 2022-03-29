@@ -1,4 +1,7 @@
+import { hash } from 'bcryptjs';
+import { validate } from 'class-validator';
 import { getRepository } from 'typeorm';
+import { BCRYPT_HASH_ROUND } from '../config';
 import Score from '../entity/Score';
 import Student from '../entity/Student';
 
@@ -37,10 +40,14 @@ class StudentService {
   }
 
   public async storeStudent(id: any, body: any): Promise<any> {
-    let studant: Student | undefined;
-
     if (id) {
-      studant = await getRepository(Student).findOne({
+      const { firstName, lastName, email, password } = body;
+
+      if (await getRepository(Student).findOne({ where: { email } })) {
+        throw new Error('E-mail is already being used')
+      }
+
+      const studant = await getRepository(Student).findOne({
         where: {
           id
         }
@@ -50,12 +57,25 @@ class StudentService {
         throw new Error('Not found Student')
       }
 
-      const newStudant = {
-        firstName: body.firstName || studant.firstName,
-        lastName: body.lastName || studant.lastName,
+      const newStudant: Student = getRepository(Student).create({
+        firstName: firstName || studant.firstName,
+        lastName: lastName || studant.lastName,
+        email: email || studant.email,
+        password: password || studant.password,
+      })
+
+      if (password) {
+        if (password !== String) {
+          newStudant.password = password.toString();
+        }
+
+        newStudant.password = await hash(
+          newStudant.password,
+          BCRYPT_HASH_ROUND
+        );
       }
 
-      await getRepository(Student).update(studant.id, newStudant);
+      await getRepository(Student).update(id, newStudant);
 
       const score: Score | undefined = await getRepository(Score).findOne({
         where: {
@@ -76,17 +96,38 @@ class StudentService {
 
       return getRepository(Score).update(score.id, newScore);
     } else {
+      const { firstName, lastName, email, password } = body;
 
-      studant = await getRepository(Student).save(body);
-
-      if (!studant) {
-        throw new Error('Not found Student')
+      if (await getRepository(Student).findOne({ where: { email } })) {
+        throw new Error('E-mail is already being used')
       }
+
+      const student: Student = getRepository(Student).create({
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+
+      const erros = await validate(student);
+
+      if (erros.length !== 0) {
+        console.log(erros.map(content => content.constraints))
+        throw new Error('Error Validation')
+      }
+
+      if (password !== String) {
+        student.password = password.toString();
+      }
+
+      student.password = await hash(student.password, BCRYPT_HASH_ROUND);
+
+      const newStudant: Student = await getRepository(Student).save(student);
 
       const { n1, n2, n3, n4 } = body
 
       const score: Score = getRepository(Score).create({
-        idStudent: studant,
+        idStudent: newStudant,
         n1,
         n2,
         n3,

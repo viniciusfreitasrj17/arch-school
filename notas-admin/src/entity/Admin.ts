@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, Column } from 'typeorm';
 import { IsAlphanumeric, IsNotEmpty, MinLength } from 'class-validator'
 import Global from './Global';
 
@@ -11,6 +11,7 @@ export default class Admin extends Global {
   lastName!: string;
 
   @Column()
+  @IsNotEmpty({ message: 'Fill this field' })
   email!: string;
 
   @Column({ select: false })
