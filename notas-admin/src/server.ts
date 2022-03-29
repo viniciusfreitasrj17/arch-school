@@ -8,11 +8,11 @@ require('dotenv').config({
 });
 
 createConnection()
-  .then((conn: Connection) => {
-    console.log(`Connected to DB: ${conn.name}`);
+  .then(() => {
+    console.log(`Connected to DB`);
 
     app.listen(portServer, () => {
-      console.log('🏃 Running Server ✨');
+      console.log(`🏃 Running Server on port ${portServer} ✨`);
     });
   })
   .catch(error => console.log('TypeORM connection error: ', error));

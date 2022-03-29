@@ -2,7 +2,7 @@
    "name": "notas-admin",
    "version": "0.0.1",
    "license": "MIT",
-   "description": "Awesome project developed with TypeORM.",
+   "description": "Notas Admin",
    "type": "commonjs",
    "devDependencies": {
       "@types/bcryptjs": "2.4.2",

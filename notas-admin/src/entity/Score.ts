@@ -7,8 +7,8 @@ export default class Score  extends Global {
   @ManyToOne(type => Student, (student) => student.id, {
     onDelete: 'CASCADE'
   })
-  @JoinColumn({ name: 'idStudent', referencedColumnName: 'id' })
-  idStudent!: Student;
+  @JoinColumn({ name: 'id_student', referencedColumnName: 'id' })
+  id_student!: Student;
 
   @Column()
   n1!: number;

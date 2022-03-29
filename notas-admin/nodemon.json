@@ -2,7 +2,7 @@
   "watch": ["src"],
   "ext": "ts",
   "execMap": {
-    "ts": "node_modules/ts-node-dev/lib/bin.js --inspect src/server.ts"
+    "ts": "node_modules/ts-node-dev/lib/bin.js --inspect=9229 src/server.ts"
   },
   "env": {
     "NODE_ENV": "development"

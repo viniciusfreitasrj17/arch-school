@@ -1,18 +1,16 @@
-import 'reflect-metadata';
-import { Connection, createConnection } from 'typeorm';
 import app from './app';
 import { portServer } from './config'
+import { pool } from './config/database';
 
-require('dotenv').config({
-  path: `${process.cwd()}/.env.${process.env.NODE_ENV}`
-});
-
-createConnection()
-  .then((conn: Connection) => {
-    console.log(`Connected to DB: ${conn.name}`);
+pool.connect()
+  .then(() => {
+    console.log('Connected to DB');
 
     app.listen(portServer, () => {
-      console.log('🏃 Running Server ✨');
+      console.log(`🏃 Running Server on port ${portServer} ✨`);
     });
   })
-  .catch(error => console.log('TypeORM connection error: ', error));
+  .catch(error => {
+    console.log('TypeORM connection error: ', error)
+  })
+

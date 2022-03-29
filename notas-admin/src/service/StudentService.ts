@@ -127,7 +127,7 @@ class StudentService {
       const { n1, n2, n3, n4 } = body
 
       const score: Score = getRepository(Score).create({
-        idStudent: newStudant,
+        id_student: newStudant,
         n1,
         n2,
         n3,

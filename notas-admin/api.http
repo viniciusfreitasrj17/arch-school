@@ -47,31 +47,31 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/student
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg1Njk4MDIsImV4cCI6MTY0ODY1NjIwMn0.qU9q7QomfnCrPOHsIHAgRc8LqcKYPLVp_DKZTeXh00w
+Authorization: Bearer xxx
 
 ###
 POST http://localhost:3000/student
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg1Njk4MDIsImV4cCI6MTY0ODY1NjIwMn0.qU9q7QomfnCrPOHsIHAgRc8LqcKYPLVp_DKZTeXh00w
+Authorization: Bearer xxx
 
 {
-  "firstName": "Lucio",
-  "lastName": "Rodrigues",
-  "email": "lucio@gmail.com",
-  "password": "lucio12345",
-  "n1": 1,
+  "firstName": "Fábio",
+  "lastName": "Fernandes",
+  "email": "fabio@gmail.com",
+  "password": "fabio12345",
+  "n1": 5,
   "n2": 8,
   "n3": 9,
-  "n4": 2
+  "n4": 7
 }
 
 ###
 POST http://localhost:3000/student/d28d4f60-0911-430a-b6c2-19266617ff1b
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDg1Njk4MDIsImV4cCI6MTY0ODY1NjIwMn0.qU9q7QomfnCrPOHsIHAgRc8LqcKYPLVp_DKZTeXh00w
+Authorization: Bearer xxx
 
 {
-  "lastName": "Andrade",
+  "lastName": "de Assis",
   "n3": 1,
   "n2": 1
 }

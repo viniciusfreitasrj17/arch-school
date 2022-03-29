@@ -23,7 +23,7 @@ export default class Student extends Global {
   @MinLength(8, { message: 'Password must be at least 8 characters long' })
   password!: string;
 
-  @OneToMany(type => Score, (score) => score.idStudent, {
+  @OneToMany(type => Score, (score) => score.id_student, {
     cascade: true,
     eager: true,
   })
