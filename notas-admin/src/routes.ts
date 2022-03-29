@@ -25,5 +25,6 @@ routes.delete('/admin/:id', AdminController.destroy);
 // routes Student
 routes.get('/student', StudentController.indexStudent);
 routes.post('/student', StudentController.storeStudent);
+routes.post('/student/:id', StudentController.storeStudent);
 
 export default routes;
