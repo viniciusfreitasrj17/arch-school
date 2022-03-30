@@ -14,3 +14,13 @@
 #### Run Development without Docker Compose
 
 `yarn && yarn dev`
+
+
+<br>
+<br>
+<br>
+<br>
+
+### Test routes with api.http file in each directory
+
+Use Visual Studio Code [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client "REST Client") Extension to Test
