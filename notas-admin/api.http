@@ -10,9 +10,14 @@ GET http://localhost:3000/health
 GET http://localhost:3000/admin
 
 
-// Return: Admin
+// Return: Admin (Error)
 ###
 GET http://localhost:3000/admin/5dfc2b16-5cf8-4391-9632-8987eef9399a
+
+
+// Return: Admin
+###
+GET http://localhost:3000/admin/3a37421b-dea7-42d0-a4ed-6e30e0d5e444
 
 
 // Return: string
@@ -30,7 +35,7 @@ Content-Type: application/json
 
 // Return: string
 ###
-PUT http://localhost:3000/admin/5dfc2b16-5cf8-4391-9632-8987eef9399a
+PUT http://localhost:3000/admin/3a37421b-dea7-42d0-a4ed-6e30e0d5e444
 Content-Type: application/json
 
 {
@@ -40,7 +45,7 @@ Content-Type: application/json
 
 // Return: string
 ###
-DELETE http://localhost:3000/admin/5dfc2b16-5cf8-4391-9632-8987eef9399a
+DELETE http://localhost:3000/admin/3a37421b-dea7-42d0-a4ed-6e30e0d5e444
 
 
 // Return: Object: { Admin, AccessToken }
@@ -81,7 +86,7 @@ Authorization: Bearer xxx
 
 // Return: string
 ###
-POST http://localhost:3000/student/d28d4f60-0911-430a-b6c2-19266617ff1b
+POST http://localhost:3000/student/feae644c-16fd-4b8b-b350-e9edd9f5d4a2
 Content-Type: application/json
 Authorization: Bearer xxx
 

@@ -8,9 +8,9 @@ class StudentController {
       const data = await StudentService.auth(request.body);
 
       return response.status(200).json(data);
-    } catch (error) {
-      studentLogger.error(error);
-      return response.status(400).json({ Message: 'Auth Student Failed' });
+    } catch (error: any) {
+      studentLogger.error(error.message);
+      return response.status(400).json({ Message: 'Auth Student Failed', Error: error.message });
     }
   }
 }

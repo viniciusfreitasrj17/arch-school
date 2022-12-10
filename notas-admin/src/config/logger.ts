@@ -1,5 +1,5 @@
 import { createLogger, format, transports, config, Logger } from 'winston';
-const { combine, timestamp, json } = format;
+const { combine, timestamp, json, errors, metadata } = format;
 
 const serverLogger: Logger = createLogger({
   levels: config.syslog.levels,
@@ -22,7 +22,9 @@ const adminLogger: Logger = createLogger({
     timestamp({
       format: 'YYYY-MM-DD HH:mm:ss'
     }),
-    json()
+    json(),
+    errors({ stack: true }),
+    metadata(),
   ),
   transports: [
     new transports.Console(),

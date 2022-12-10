@@ -8,9 +8,9 @@ class StudentController {
       const data: any[] | undefined = await StudentService.indexStudent();
 
       return response.status(200).json(data);
-    } catch (error) {
-      studentLogger.error(error);
-      return response.status(400).json({ Message: 'Index Student Failed' });
+    } catch (error: any) {
+      studentLogger.error(error.message);
+      return response.status(400).json({ Message: 'Index Student Failed', Error: error.message });
     }
   }
 
@@ -19,9 +19,9 @@ class StudentController {
       await StudentService.storeStudent(request.params.id, request.body);
 
       return response.status(201).json({ Message: 'New Student Created or Updated' });
-    } catch (error) {
-      studentLogger.error(error);
-      return response.status(400).json({ Message: 'Store Student Failed' });
+    } catch (error: any) {
+      studentLogger.error(error.message);
+      return response.status(400).json({ Message: 'Store Student Failed', Error: error.message });
     }
   }
 }

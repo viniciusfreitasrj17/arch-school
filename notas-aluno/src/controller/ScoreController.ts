@@ -16,9 +16,9 @@ class ScoreController {
       const data: Score = await ScoreService.index(request.userId);
 
       return response.status(200).json(data);
-    } catch (error) {
-      scoreLogger.error(error);
-      return response.status(400).json({ Message: 'Index Score Failed' });
+    } catch (error: any) {
+      scoreLogger.error(error.message);
+      return response.status(400).json({ Message: 'Index Score Failed', Error: error.message });
     }
   }
 }

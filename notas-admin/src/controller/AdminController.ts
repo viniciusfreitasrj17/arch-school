@@ -9,9 +9,9 @@ class AdminController {
       const data: Admin[] | undefined = await AdminService.index();
 
       return response.status(200).json(data);
-    } catch (error) {
-      adminLogger.error(error);
-      return response.status(400).json({ Message: 'Index Admin Failed' });
+    } catch (error: any) {
+      adminLogger.error(error.message);
+      return response.status(400).json({ Message: 'Index Admin Failed', Error: error.message });
     }
   }
 
@@ -20,11 +20,12 @@ class AdminController {
       const data: Admin | undefined = await AdminService.show(
         request.params.id
       );
+      if (!data) throw new Error('Admin not found')
 
       return response.status(200).json(data);
-    } catch (error) {
-      adminLogger.error(error);
-      return response.status(400).json({ Message: 'Show Admin Failed' });
+    } catch (error: any) {
+      adminLogger.error(error.message);
+      return response.status(400).json({ Message: 'Show Admin Failed', Error: error.message });
     }
   }
 
@@ -33,9 +34,9 @@ class AdminController {
       await AdminService.store(request.body);
 
       return response.status(201).json({ Message: 'New Admin Created' });
-    } catch (error) {
-      adminLogger.error(error);
-      return response.status(400).json({ Message: 'Store Admin Failed' });
+    } catch (error: any) {
+      adminLogger.error(error.message);
+      return response.status(400).json({ Message: 'Store Admin Failed', Error: error.message });
     }
   }
 
@@ -44,9 +45,9 @@ class AdminController {
       await AdminService.update(request.params.id, request.body);
 
       return response.status(200).json({ Message: 'Admin Updated' });
-    } catch (error) {
-      adminLogger.error(error);
-      return response.status(400).json({ Message: 'Update Admin Failed' });
+    } catch (error: any) {
+      adminLogger.error(error.message);
+      return response.status(400).json({ Message: 'Update Admin Failed', Error: error.message });
     }
   }
 
@@ -60,9 +61,9 @@ class AdminController {
       return response
         .status(200)
         .json({ Message: `Admin ${data.firstName} deleted` });
-    } catch (error) {
-      adminLogger.error(error);
-      return response.status(400).json({ Message: 'Destroy Admin Failed' });
+    } catch (error: any) {
+      adminLogger.error(error.message);
+      return response.status(400).json({ Message: 'Destroy Admin Failed', Error: error.message });
     }
   }
 
@@ -71,9 +72,9 @@ class AdminController {
       const data = await AdminService.auth(request.body);
 
       return response.status(200).json(data);
-    } catch (error) {
-      adminLogger.error(error);
-      return response.status(400).json({ Message: 'Auth Admin Failed' });
+    } catch (error: any) {
+      adminLogger.error(error.message);
+      return response.status(400).json({ Message: 'Auth Admin Failed', Error: error.message });
     }
   }
 }
