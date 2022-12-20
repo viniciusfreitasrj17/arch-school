@@ -8,21 +8,25 @@ GET http://localhost:3000/health
 // Return: Admin[]
 ###
 GET http://localhost:3000/admin
+x-api-key: 2YmhGba76fQQa82jTfLokU1Ici9YJn
 
 
 // Return: Admin (Error)
 ###
 GET http://localhost:3000/admin/5dfc2b16-5cf8-4391-9632-8987eef9399a
+x-api-key: 2YmhGba76fQQa82jTfLokU1Ici9YJn
 
 
 // Return: Admin
 ###
 GET http://localhost:3000/admin/3a37421b-dea7-42d0-a4ed-6e30e0d5e444
+x-api-key: 2YmhGba76fQQa82jTfLokU1Ici9YJn
 
 
 // Return: string
 ###
 POST http://localhost:3000/admin
+x-api-key: 2YmhGba76fQQa82jTfLokU1Ici9YJn
 Content-Type: application/json
 
 {
@@ -36,6 +40,7 @@ Content-Type: application/json
 // Return: string
 ###
 PUT http://localhost:3000/admin/3a37421b-dea7-42d0-a4ed-6e30e0d5e444
+x-api-key: 2YmhGba76fQQa82jTfLokU1Ici9YJn
 Content-Type: application/json
 
 {
@@ -46,6 +51,7 @@ Content-Type: application/json
 // Return: string
 ###
 DELETE http://localhost:3000/admin/3a37421b-dea7-42d0-a4ed-6e30e0d5e444
+x-api-key: 2YmhGba76fQQa82jTfLokU1Ici9YJn
 
 
 // Return: Object: { Admin, AccessToken }

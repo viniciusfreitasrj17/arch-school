@@ -2,6 +2,7 @@ import { Request, Response, Router } from 'express';
 import AdminController from './controller/AdminController';
 import StudentController from './controller/StudentController';
 import authMiddleware from './middlewares/auth';
+import authAdminMiddleware from './middlewares/authAdmin';
 
 const routes: Router = Router();
 
@@ -17,11 +18,11 @@ routes.get('/health', (_: Request, res: Response): Response<unknown> => {
 });
 
 // routes Admin
-routes.get('/admin', AdminController.index);
-routes.get('/admin/:id', AdminController.show);
-routes.put('/admin/:id', AdminController.update);
-routes.post('/admin', AdminController.store);
-routes.delete('/admin/:id', AdminController.destroy);
+routes.get('/admin', authAdminMiddleware, AdminController.index);
+routes.get('/admin/:id', authAdminMiddleware, AdminController.show);
+routes.put('/admin/:id', authAdminMiddleware, AdminController.update);
+routes.post('/admin', authAdminMiddleware, AdminController.store);
+routes.delete('/admin/:id', authAdminMiddleware, AdminController.destroy);
 routes.post('/admin/login', AdminController.auth);
 
 // routes Student
