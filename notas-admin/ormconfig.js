@@ -9,10 +9,10 @@ module.exports = [{
   database: process.env.DB_NAME,
   synchronize: true,
   // Add PATH in Server
-  entities: [process.env.TYPEORM_ENTITIES],
-  migrations: [process.env.TYPEORM_MIGRATION],
+  entities: ['./src/entity/*.ts'],
+  migrations: ['./src/database/migrations/*.ts'],
   cli: {
-    entitiesDir: process.env.TYPEORM_ENTITIES_DIR,
-    migrationsDir: process.env.TYPEORM_MIGRATION_DIR,
+    entitiesDir: './src/entity',
+    migrationsDir: './src/database/migrations',
   }
 }];
