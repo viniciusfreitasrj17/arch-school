@@ -22,7 +22,7 @@ routes.get('/admin', authAdminMiddleware, AdminController.index);
 routes.get('/admin/:id', authAdminMiddleware, AdminController.show);
 routes.put('/admin/:id', authAdminMiddleware, AdminController.update);
 routes.post('/admin', authAdminMiddleware, AdminController.store);
-routes.delete('/admin/:id', authAdminMiddleware, AdminController.destroy);
+// routes.delete('/admin/:id', authAdminMiddleware, AdminController.destroy);
 routes.post('/admin/login', AdminController.auth);
 
 // routes Student

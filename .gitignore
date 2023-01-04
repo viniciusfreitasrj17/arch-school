@@ -109,3 +109,4 @@ dist
 data/
 typegen/**/*
 k8s/staging/
+api.staging.http
