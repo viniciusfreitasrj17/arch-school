@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: notas-admin
+  namespace: test-dev
+  
+spec:
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+
+  selector:
+    name: notas-admin-pod
+    app: notas-admin-app
+
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: notas-aluno
+  namespace: test-dev
+  
+spec:
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+
+  selector:
+    name: notas-aluno-pod
+    app: notas-aluno-app
+
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: notas-nginx
+  namespace: test-dev
+  
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+
+  selector:
+    name: notas-nginx-pod
+    app: notas-nginx-app
+
+  type: ClusterIP

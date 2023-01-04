@@ -1,0 +1,19 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: notas-env
+  namespace: test-dev
+data:
+  ENVIRONMENT: PROD
+
+  DB_HOST: "localhost"
+  DB_PORT: "5432"
+  DB_USER: "postgres"
+  DB_PASS: "postgres"
+  DB_NAME: "archdb"
+
+  AUTH_CONFIG: "cf2aa1353049ac70faad5513c2b3e337"
+  AUTH_ADMIN_CONFIG: "2YmhGba76fQQa82jTfLokU1Ici9YJn"
+
+  URL_ADMIN: "http://10.245.102.1:8000/"
+  URL_ALUNO: "http://10.245.102.2:8000/"

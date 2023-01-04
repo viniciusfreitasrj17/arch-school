@@ -1,0 +1,121 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: notas-admin
+  namespace: test-dev
+  labels:
+    version: 0.0.1
+    app: notas-admin-app
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: notas-admin-pod
+      app: notas-admin-app
+
+  template:
+    metadata:
+      name: notas-admin-pod
+      labels:
+        name: notas-admin-pod
+        app: notas-admin-app
+
+    spec:
+        terminationGracePeriodSeconds: 30
+        containers:
+        - envFrom:
+            - configMapRef:
+                name: notas-env
+          env:
+            - name: PORT
+              value: "8000"
+          name: notas-admin
+          image: viniciusfreitasrj17/notas-admin-ms:staging
+          imagePullPolicy: Always
+
+          ports:
+          - name: port8000
+            containerPort: 8000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: notas-aluno
+  namespace: test-dev
+  labels:
+    version: 0.0.1
+    app: notas-aluno-app
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: notas-aluno-pod
+      app: notas-aluno-app
+
+  template:
+    metadata:
+      name: notas-aluno-pod
+      labels:
+        name: notas-aluno-pod
+        app: notas-aluno-app
+
+    spec:
+        terminationGracePeriodSeconds: 30
+        containers:
+        - envFrom:
+            - configMapRef:
+                name: notas-env
+          env:
+            - name: PORT
+              value: "8000"
+          name: notas-aluno
+          image: viniciusfreitasrj17/notas-aluno-ms:staging
+          imagePullPolicy: Always
+
+          ports:
+          - name: port8000
+            containerPort: 8000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: notas-nginx
+  namespace: test-dev
+  labels:
+    version: 0.0.1
+    app: notas-nginx-app
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: notas-nginx-pod
+      app: notas-nginx-app
+
+  template:
+    metadata:
+      name: notas-nginx-pod
+      labels:
+        name: notas-nginx-pod
+        app: notas-nginx-app
+
+    spec:
+        terminationGracePeriodSeconds: 30
+        containers:
+        - envFrom:
+            - configMapRef:
+                name: notas-env
+          name: notas-nginx
+          image: viniciusfreitasrj17/notas-nginx-proxy:staging
+          imagePullPolicy: Always
+
+          ports:
+          - name: port80
+            containerPort: 80

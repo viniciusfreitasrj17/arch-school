@@ -108,3 +108,4 @@ dist
 # Othos Directories
 data/
 typegen/**/*
+k8s/staging/

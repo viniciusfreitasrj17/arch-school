@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: notas-nginx
+  namespace: test-dev
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: meusite.com
+    http:
+      paths:
+      - path: /aluno(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: notas-aluno
+            port:
+              number: 8000
+      - path: /adm(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: notas-admin
+            port:
+              number: 8000
